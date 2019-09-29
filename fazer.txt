@@ -1,0 +1,25 @@
+Crie um site SOMENTE USANDO HTML E CSS
+Ele deve ser salvo como exercicio2.html
+
+
+Titulo - h1
+Paragrafo e texto
+
+
+Dentro do texto alguma palavra deve ficar em itálico usando:
+<i>palavra em itálico</i>
+
+Similar ao <b>
+
+
+Lista de itens - 1
+Crie uma lista de itens seguindo o exemplo do site:
+https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/ul
+
+
+Paragrafo e texto
+
+
+Lista de itens - 2
+Crie uma lista de itens seguindo o exemplo do site:
+https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/ol
