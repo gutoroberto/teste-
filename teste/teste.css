@@ -1,0 +1,63 @@
+.p-personalizado--outro {
+    color: blue;
+    background-color: green;
+}
+
+.p-personalizado {
+    color: red;
+    padding: 16px;
+    margin-bottom: 64px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.178);
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+}
+
+.p-personalizado:hover {
+    color: yellow;
+    background-color: black;
+    cursor: pointer;
+}
+
+
+
+body{
+    background-color: purple;
+    transition: all 0.5s ease-out;
+}
+/* body:hover {
+    background-color: green;
+} */
+
+.selecionado {
+    color: green;
+    background-color: black;
+}
+
+a {
+    color: black;
+
+    background-color: aliceblue;
+    margin-bottom: 4px;
+    box-shadow: 5px 6px 5px 6px #00000081;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+a:hover{
+    /* color:white; */
+    background-color: bisque;
+}
+
+.arroz {
+    position: absolute;
+    right: 100px;
+    bottom: 100px
+}
+.meu{
+    color: #00000081;
+    background: url('https://image.cachorrogato.com.br/textimages/cachorrinho-ideal') no-repeat center top;
+    height: 500px;
+    text-align: center;
+}

@@ -1,0 +1,50 @@
+h1{
+    background: url('./images.jpg') no-repeat left top;
+    background-size: 300px 100%;
+    height: 300px;
+    color: purple;
+    font-size: 25px;
+    font-family: 'Comic Sans MS';
+    transition: all .5s ease-out;
+}
+
+h1:hover {
+transition: 0.5s ease-out;
+}
+
+h2{
+   background: url('./download.jpg') no-repeat left top;
+   background-size: 300px 100%;
+   height: 200px;
+   font-family: 'Comic sans MS';
+   color: blue;
+}
+a{
+height: 150px;
+background-color:red;
+font-family: 'Comic sans MS';
+font-size: 28px;
+transition: all .5s ease-out;
+cursor: pointer;
+margin: 60px;
+
+}
+a:hover{
+    color: blue;
+}
+button{
+    color: brown;
+    font-size: 30px;
+    transition: all .5s ease-out;
+    background-color: blue;
+    cursor: pointer;
+}
+body{
+    background-color: aqua;
+}
+button:hover{
+    color: aliceblue;
+    size: 8px;
+    transition: all .5s ease-out;
+    box-shadow: 5px 6px 5px 6px blue;
+}
