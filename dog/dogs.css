@@ -1,15 +1,20 @@
 h1{
     background: url('./images.jpg') no-repeat left top;
-    background-size: 300px 100%;
+    background-size: 100% 100%;
     height: 300px;
+    width: 300px;
     color: purple;
     font-size: 25px;
-    font-family: 'Comic Sans MS';
+    font-family: 'arial';
     transition: all .5s ease-out;
 }
 
 h1:hover {
-transition: 0.5s ease-out;
+    color: aqua;
+}
+
+h1:active {
+    color: green;
 }
 
 h2{
@@ -20,13 +25,13 @@ h2{
    color: blue;
 }
 a{
-height: 150px;
-background-color:red;
-font-family: 'Comic sans MS';
-font-size: 28px;
-transition: all .5s ease-out;
-cursor: pointer;
-margin: 60px;
+    height: 150px;
+    background-color:red;
+    font-family: 'Comic sans MS';
+    font-size: 28px;
+    transition: all .5s ease-out;
+    cursor: pointer;
+    margin: 60px;
 
 }
 a:hover{
