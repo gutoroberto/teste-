@@ -23,6 +23,13 @@ input {
     border-radius: 5px;
     box-shadow: 0px 3px 3px 4px #0000001f;
     margin-bottom: 16px;
+    flex-direction: column;
+}
+
+@media (min-width: 760px) {
+    .card-dog {
+        flex-direction: row;
+    }
 }
 
 .info-dog {
