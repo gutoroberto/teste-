@@ -26,6 +26,10 @@ input {
     flex-direction: column;
 }
 
+.img-dog img {
+    width: 100%;
+}
+
 @media (min-width: 760px) {
     .card-dog {
         flex-direction: row;
