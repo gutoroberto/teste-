@@ -1,0 +1,33 @@
+h1{
+    font-size: 48px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 12px 33px
+    
+}
+#site{
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    size: 10px;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+    
+}
+#site1 {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    size: 10px;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+}
+img{
+    border-radius: 8px;
+    margin: 12px;
+    box-shadow: 13px 13px 7px 7px #00000067;
+
+}
+body{
+    padding: 0px 20%;
+    margin: 0px;
+    background-color: #dce2dc;
+    
+}
