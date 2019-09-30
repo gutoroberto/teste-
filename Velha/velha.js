@@ -8,6 +8,9 @@ var jogadas = []
 
 // Define que o jogo já acabou ou não
 var jogoAcabou = false
+
+// Define o jogador inicial
+var jogadorInicial = 'X'
     
 // Faz com que cada div com .op tenha jogou(e) como função
 // quando clicar
@@ -32,6 +35,17 @@ function iniciarNovaPartida() {
     for (let i = 0; i < 9; i++) {
         jogadas[i] = ''
     }
+    if (jogadorInicial === 'X') {
+        // Define que o computador será o próximo primeiro jogador
+        jogadorInicial = 'O'
+    }
+    else {
+        // Define que o player será o próximo primeiro jogador
+        jogadorInicial = 'X'
+        // O computador faz uma jogada aleatória
+        jogadaComputadorAleatoria()
+    }
+    
     // Chama a função definirJogo
     definirJogo()
 
