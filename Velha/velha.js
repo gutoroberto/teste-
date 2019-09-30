@@ -110,6 +110,16 @@ function checarVitoria(jogador) {
 
 
 function jogadaComputadorAleatoria() {
+    // Executa a função do arquivo jogada-obrigatoria.js
+    // para ver se é obrigado a jogar para não perder
+    var jogadaObrigatoria = jogadaComputadorObrigatoria()
+    if (jogadaObrigatoria) {
+        console.log('Jogada obrigatória', jogadaObrigatoria)
+        jogadas[jogadaObrigatoria] = 'O'
+        checarVitoriaComputador()
+        return
+    }
+
     // Pega as casas vazias disponíveis
     var casasVazias = []
     for (let i = 0; i < jogadas.length; i++) {
@@ -124,7 +134,12 @@ function jogadaComputadorAleatoria() {
     var casaJogada = Math.floor(Math.random() * casasVazias.length)
     // Joga nesse número aleatório
     jogadas[casasVazias[casaJogada]] = 'O'
+    checarVitoriaComputador()
+}
 
+
+// Checa a vitória do computador
+function checarVitoriaComputador() {
     if (checarVitoria('O')) {
         jogoAcabou = true
         h1.innerText = 'Você perdeu seu looser!! Clique aqui para iniciar uma nova partida'
