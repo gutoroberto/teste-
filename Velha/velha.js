@@ -8,20 +8,48 @@ var der = document.querySelector('#der')
 var emp = document.querySelector('#emp')
 // A lista das jogadas efetuadas
 var jogadas = []
+var jogadasPreenchidas = 0
+
+var jogadorX = 'X'
+var jogadorO = 'O'
+
+var compVScomp = confirm('Computador vs computador?')
 
 // Define que o jogo já acabou ou não
 var jogoAcabou = false
-var empates = 0
-var vitPlayer = 0
-var vitComputador = 0
 
-// Define o jogador inicial
-var jogadorInicial = 'X'
+
+// Define o jogador inicial aleatoriamente
+var aleatorio = Math.floor(Math.random() * 2)
+var jogadorInicial
+if (aleatorio)
+    jogadorInicial = jogadorX
+else
+    jogadorInicial = jogadorO
     
+
 // Faz com que cada div com .op tenha jogou(e) como função
 // quando clicar
 for (let i = 0; i < ops.length; i++) {
     ops[i].onclick = playerJogou
+}
+
+
+// Lê o placar do localStorage caso tenha
+var empates = localStorage.getItem('emp')
+var vitPlayer = localStorage.getItem('vit')
+var vitComputador = localStorage.getItem('der')
+if (empates) {
+    emp.innerText = 'Empates:  ' + empates
+    empates = Number.parseInt(empates)
+}
+if (vitPlayer) {
+    vit.innerText = 'Vitórias: ' + vitPlayer
+    vitPlayer = Number.parseInt(empates)
+}
+if (vitComputador) {
+    der.innerText = 'Derrotas: ' + vitComputador
+    vitComputador = Number.parseInt(vitComputador)
 }
 
 
@@ -38,8 +66,15 @@ iniciarNovaPartida()
 
 /** Inicia um novo jogo */
 function iniciarNovaPartida() {
+    // Limpa o console
+    console.clear()
+
     jogoAcabou = false
+    jogadasPreenchidas = 0
     h1.innerText = 'Jogo da Velha'
+
+    // Reseta as configurações (never-win.js)
+    resetarNeverWin()
 
     // Remove a classe da vitória do player e do computador caso haja
     h1.classList.remove('op--player')
@@ -48,53 +83,81 @@ function iniciarNovaPartida() {
     // Faz com que a lista fique com 9 string vazias
     for (let i = 0; i < 9; i++) {
         jogadas[i] = ''
+        ops[i].innerText = ''
         // Remove todos os estilos css que estiverem
         ops[i].classList.remove('op--player')
         ops[i].classList.remove('op--comp')
         ops[i].classList.remove('op--vit')
     }
-    if (jogadorInicial === 'X') {
+    if (jogadorInicial === jogadorX) {
         // Define que o computador será o próximo primeiro jogador
-        jogadorInicial = 'O'
+        jogadorInicial = jogadorO
+        // Se estiver no modo compVScomp o computador joga
+        if (compVScomp) {
+            setTimeout(() => jogadaComputador(jogadorX, jogadorO), 600)
+        }
     }
     else {
         // Define que o player será o próximo primeiro jogador
-        jogadorInicial = 'X'
+        jogadorInicial = jogadorX
         // O computador faz uma jogada aleatória
-        jogadaComputadorAleatoria()
+        jogadaComputador(jogadorO, jogadorX)
     }
+}
 
-    // Chama a função definirJogo
-    definirJogo()
 
-    // Limpa o console
-    console.clear()
+// Sempre que alguém faz uma jogada vem para essa função
+function atribuirJogada(jogador, casa, descComp) {
+    if (jogadas[casa] !== '')
+        throw `Erro casa ${casa} já atribuída`
+
+    
+    jogadas[casa] = jogador
+    ops[casa].innerText = jogador
+    jogadasPreenchidas++
+    if (descComp)
+        descComp = ' - ' + descComp
+    else
+        descComp = ''
+    console.log(`CASA ${casa} - ${jogador}${descComp}`)
+
+
+    if (jogador === jogadorX) {
+        // Define a classe css que aparecerá na div
+        ops[casa].classList.add('op--player')
+        // Verifica se o player venceu
+        checarVitoriaPlayer()
+        // Vai para a jogada do computador (se o jogo estiver em andamento)
+        if (!jogoAcabou && jogadasPreenchidas < 9) {
+            if (!compVScomp)
+                jogadaComputador(jogadorO, jogadorX)
+            else
+                setTimeout(() => jogadaComputador(jogadorO, jogadorX), 600)
+        }
+    }
+    else {
+        // Define a classe css que aparecerá na div
+        ops[casa].classList.add('op--comp')
+        // Verifica se o computador venceu
+        checarVitoriaComputador()
+        // Se estiver compVScomp ele vai para a próxima jogada
+        if (compVScomp && !jogoAcabou && jogadasPreenchidas < 9) {
+            setTimeout(() => jogadaComputador(jogadorX, jogadorO), 600)
+        }
+    }
+    // Define se empatou (caso ninguém tenha vencido)
+    definirSeEmpatou()
 }
 
 
 /** Faz com que cada 'div.op' fique de acordo com a array 'jogadas' */
-function definirJogo() {
-    // Verifica a quantidade de jogadas preenchidas para determinar se é empate
-    var jogadasPreenchidas = 0
-
-    // Define que cada espaço esteja de acordo com a array jogadas
-    for (let i = 0; i < 9; i++) {
-        ops[i].innerText = jogadas[i]
-        if (jogadas[i] === 'X') {
-            ops[i].classList.add('op--player')
-            jogadasPreenchidas++
-        }
-        else if (jogadas[i] === 'O') {
-            ops[i].classList.add('op--comp')
-            jogadasPreenchidas++
-        }
-    }
-
+function definirSeEmpatou() {
     // Verifica se é empate
-    if (jogadasPreenchidas === 9 && !jogoAcabou) {
+    if (jogadasPreenchidas >= 9 && !jogoAcabou) {
         h1.innerHTML = 'Empate!<br>Clique aqui para iniciar uma nova partida'
         jogoAcabou = true
         empates++
+        localStorage.setItem('emp', vitComputador)
         emp.innerText = 'Empates:  ' + empates
     }
 }
@@ -105,7 +168,7 @@ function definirJogo() {
  */
 function playerJogou(e) {
     // Se o jogo já acabou, então sai da função
-    if (jogoAcabou) {
+    if (jogoAcabou || compVScomp) {
         return
     }
 
@@ -120,25 +183,8 @@ function playerJogou(e) {
     // define que será X, ou seja, que o jogador
     // jogou nessa casa
     if (jogadas[i] === '') {
-        // Avisa no console o número da casa que jogou
-        console.log('Jogou na casa ' + i)
         // Atribui para a lista de jogadas a jogada do jogador
-        jogadas[i] = 'X'
-        // Verifica se venceu para continuar ou não o jogo
-        if (checarVitoria('X')) {
-            jogoAcabou = true
-            vitPlayer++
-            vit.innerText = 'Vitórias: ' + vitPlayer
-            h1.innerHTML = 'Você venceu!<br>Clique aqui para iniciar uma nova partida'
-            h1.classList.add('op--player')
-        }
-        else {
-            // Computador joga então
-            jogadaComputadorAleatoria()
-        }
-
-        // Redesenha as divs para terem os valores corretos
-        definirJogo()
+        atribuirJogada(jogadorX, i)
     }
 }
 
@@ -168,14 +214,22 @@ function checarVitoria(jogador) {
 }
 
 
-function jogadaComputadorAleatoria() {
+function jogadaComputador(compSimbol, rivalSimbol) {
+    if (!compSimbol) {
+        rivalSimbol = jogadorX
+        compSimbol = jogadorO
+    }
     // Executa a função do arquivo jogada-obrigatoria.js
     // para ver se é obrigado a jogar para não perder
-    var jogadaObrigatoria = jogadaComputadorObrigatoria()
-    if (jogadaObrigatoria) {
-        console.log('Jogada obrigatória', jogadaObrigatoria)
-        jogadas[jogadaObrigatoria] = 'O'
-        checarVitoriaComputador()
+    var jogadaObrigatoria = jogadaComputadorObrigatoria(compSimbol, rivalSimbol)
+    if (jogadaObrigatoria !== false) {
+        atribuirJogada(compSimbol, jogadaObrigatoria, 'obrigatória')
+        return
+    }
+
+    var jogadaNeverWin = nerverWinVerify(rivalSimbol, compSimbol)
+    if (jogadaNeverWin !== false) {
+        atribuirJogada(compSimbol, jogadaNeverWin, 'never-win')
         return
     }
 
@@ -192,18 +246,31 @@ function jogadaComputadorAleatoria() {
     // Pega um número aleatorio dentro da lista
     var casaJogada = Math.floor(Math.random() * casasVazias.length)
     // Joga nesse número aleatório
-    jogadas[casasVazias[casaJogada]] = 'O'
-    checarVitoriaComputador()
+    atribuirJogada(compSimbol, casasVazias[casaJogada], 'aleatória')
 }
 
 
 // Checa a vitória do computador
 function checarVitoriaComputador() {
-    if (checarVitoria('O')) {
+    if (checarVitoria(jogadorO)) {
         jogoAcabou = true
         vitComputador++
+        localStorage.setItem('der', vitComputador)
         der.innerText = 'Derrotas: ' + vitComputador
         h1.classList.add('op--comp')
         h1.innerHTML = 'Você perdeu seu looser!!<br>Clique aqui para iniciar uma nova partida'
+    }
+}
+
+
+// Checa a vitória do computador
+function checarVitoriaPlayer() {
+    if (checarVitoria(jogadorX)) {
+        jogoAcabou = true
+        vitPlayer++
+        localStorage.setItem('vit', vitComputador)
+        vit.innerText = 'Vitórias: ' + vitPlayer
+        h1.innerHTML = 'Você venceu!<br>Clique aqui para iniciar uma nova partida'
+        h1.classList.add('op--player')
     }
 }

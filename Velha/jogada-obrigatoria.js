@@ -15,19 +15,19 @@ var listaLinhas = [
 
 
 /** Pega a joga que o computador deve jogar para não perder */
-function jogadaComputadorObrigatoria() {
+function jogadaComputadorObrigatoria(compSimbol, rivalSimbol) {
     // Trafega entre a lista de linhas para pegar a jogada
     // Caso seja o computador que irá vencer
     for (let i = 0; i < listaLinhas.length; i++) {
-        var jogada = checarLinha(listaLinhas[i], 'O')
-        if (jogada)
+        var jogada = checarLinha(listaLinhas[i], compSimbol)
+        if (jogada !== false)
             return jogada
     }
     // Trafega entre a lista de linhas para pegar a jogada
     // Caso seja o player que irá vencer
     for (let i = 0; i < listaLinhas.length; i++) {
-        var jogada = checarLinha(listaLinhas[i], 'X')
-        if (jogada)
+        var jogada = checarLinha(listaLinhas[i], rivalSimbol)
+        if (jogada !== false)
             return jogada
     }
     return false
@@ -39,7 +39,7 @@ function checarLinha(linha, jogador) {
     // Quantas jogadas o jogador sendo verificado fez nessa linha
     var jogadasJogador = 0
     // O único espaço vazio (caso a linha tenha duas jogadas do jogador)
-    var espacoVazio
+    var espacoVazio = null
     // Trafega entre os espaços dessa linha para ver se o jogador tem
     // duas jogadas nessa linha
     for (let i = 0; i < 3; i++) {
@@ -62,6 +62,7 @@ function checarLinha(linha, jogador) {
 
     // Caso o jogador fez duas jogadas e há um espaço vazio
     // O espaço vazio é jogado
-    if (jogadasJogador == 2 && espacoVazio)
+    if (jogadasJogador == 2 && espacoVazio != null)
         return espacoVazio
+    return false
 }
