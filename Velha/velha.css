@@ -16,11 +16,12 @@ body {
     justify-content: center;
     flex-flow: column;
     background-color: #469e46;
+    color: #1d301d;
 }
 
 html, body {
     height: 100%;
-    font-family: Arial;
+    font-family: 'Consolas', Courier, monospace;
     font-size: 32px;
 }
 
@@ -34,14 +35,44 @@ html, body {
     flex-flow: row;
 }
 
+h1 {
+    font-size: 32px;
+    text-align: center;
+    transition: all .25s ease-out;
+}
+
 .op {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 50px;
     width: 50px;
+    transition: all .5s ease-out;
+    color: #ffffff00;
 }
 
-h1 {
-    font-size: 32px;
+.op--player {
+    color: #3131ce;
+}
+
+.op--comp {
+    color: #bb1b1b;
+}
+
+.op--vit {
+    color: #c8ff00;
+}
+
+
+.placar {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    font-size: 24px;
+}
+
+.placar > pre {
+    margin: 0px;
+    margin-bottom: 4px;
 }

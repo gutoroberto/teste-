@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jogo da velha</title>
+    <title>Jogo da Velha</title>
     <link rel="stylesheet" href="velha.css">
 </head>
 <body>
-    <h1 style="margin: 16px;">JOGO DA VELHA</h1>
+    <h1 style="margin: 16px;">Jogo da Velha</h1>
     <div class="jogo">
         <div class="row">
             <div class="op"></div>
@@ -33,6 +33,11 @@
             <div class="divisoria-verdical"></div>
             <div class="op"></div>
         </div>
+    </div>
+    <div class="placar">
+        <pre class="op--player" id="vit">Vitórias: 0</pre>
+        <pre class="op--comp" id="der">Derrotas: 0</pre>
+        <pre id="emp">Empates:  0</pre>
     </div>
     <script src="jogada-obrigatoria.js"></script>
     <script src="velha.js"></script>
