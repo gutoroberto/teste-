@@ -128,7 +128,7 @@ function playerJogou(e) {
         if (checarVitoria('X')) {
             jogoAcabou = true
             vitPlayer++
-            emp.innerText = 'Vitórias: ' + vitPlayer
+            vit.innerText = 'Vitórias: ' + vitPlayer
             h1.innerHTML = 'Você venceu!<br>Clique aqui para iniciar uma nova partida'
             h1.classList.add('op--player')
         }
