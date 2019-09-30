@@ -91,7 +91,7 @@ function definirJogo() {
     }
 
     // Verifica se é empate
-    if (jogadasPreenchidas === 9) {
+    if (jogadasPreenchidas === 9 && !jogoAcabou) {
         h1.innerHTML = 'Empate!<br>Clique aqui para iniciar uma nova partida'
         jogoAcabou = true
         empates++
