@@ -20,7 +20,10 @@ for (let i = 0; i < ops.length; i++) {
 
 
 // Define que se clicar no título reseta o jogo
-h1.onclick = iniciarNovaPartida
+h1.onclick = function() {
+    if (jogoAcabou)
+        iniciarNovaPartida()
+}
 
 
 // Começa uma nova partida
@@ -45,7 +48,7 @@ function iniciarNovaPartida() {
         // O computador faz uma jogada aleatória
         jogadaComputadorAleatoria()
     }
-    
+
     // Chama a função definirJogo
     definirJogo()
 
