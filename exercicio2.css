@@ -1,0 +1,8 @@
+ol{
+    list-style-type: circle;
+    list-style-position: outside;
+}
+ul{
+    list-style-type: decimal;
+    list-style-position: initial;
+}
