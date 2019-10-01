@@ -1,0 +1,26 @@
+Crie um site SOMENTE USANDO HTML E CSS
+Ele deve ser salvo como exercicio3.html
+
+
+Barra de navegação ----------
+
+usando o elemento <nav>
+Crie um site seguindo o modelo:
+
+    img - Logo
+    h1  - Título
+    link - exercicio1
+    link - exercicio2
+    link - dogs
+    link - projeto
+    link - velha
+
+Todos os elementos devem ficar dentro do elemento <nav>
+E eles devem ficar na horizontal
+
+Usando o CSS
+    limite o tamanho do Logo usando (width ou height)
+
+    defina padding para todos os elementos filhos de <nav> (menos a imagem do logo)
+
+    defina a fonte da <nav> para Segoe UI
