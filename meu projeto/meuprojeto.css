@@ -1,0 +1,49 @@
+body {
+    padding: 0px 20%;
+    margin: 0px;
+    background-color: #dce2dc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #363f36;
+}
+
+input {
+    padding: 4px;
+    border-radius: 5px;
+    border-style: dotted;
+    border-color: gray;
+}
+
+#lista-moda {
+    padding-top: 16px;
+}
+
+.card-moda {
+    display: flex;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0px 3px 3px 4px #0000001f;
+    margin-bottom: 16px;
+    flex-direction: column;
+}
+
+.img-moda img {
+    width: 100%;
+}
+
+@media (min-width: 760px) {
+    .card-moda {
+        flex-direction: row;
+    }
+}
+
+.info-moda {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    font-size: 24px;
+    font-family: 'arial black';
+}
+
+.info-moda span {
+    margin-bottom: 16px;
+}
