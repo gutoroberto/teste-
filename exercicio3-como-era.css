@@ -1,0 +1,22 @@
+nav {
+    font-family: 'Segoe UI';
+}
+
+
+h1 {
+    padding: 0px 8px;
+    display: inline-block;
+}
+
+
+img {
+    display: inline-block;
+    height: 100px;
+}
+
+
+.link {
+    padding: 0px 4px;
+    padding-bottom: 36px;
+    display: inline-block;
+}
