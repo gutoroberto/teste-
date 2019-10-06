@@ -24,4 +24,14 @@ body {
 
 .content {
     padding: 0px 10%;
+    /* display: flex; */
+    flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 0px;
+}
+
+.sub {
+    margin-bottom: 16px;
 }
