@@ -1,0 +1,27 @@
+#flex {
+    background-color: chocolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 16px;
+    color: white;
+}
+body {
+    margin: 0px;
+    background-color: #dbc4bc;
+}
+
+#flex a {
+    color: white;
+}
+#flex > * {
+    padding: 20px !important;
+}
+#flex > * {
+    padding: 16px;
+}
+
+.content {
+    padding: 0px 10%;
+}
