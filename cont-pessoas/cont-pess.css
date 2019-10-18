@@ -1,0 +1,44 @@
+html, body  {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("https://ae01.alicdn.com/kf/HTB16XuUczfguuRjy1zeq6z0KFXan/A-laser-Conjunto-de-Cozinha-Damasco-Facas-Chef-Jap-o-A-o-Inoxid-vel-faca-de.jpg")no-repeat center;
+    background-size: 100%;
+    color: aqua;
+    background-color: black;
+    text-shadow:2px 2px #ffffff71;
+}
+p {
+    font-size: 28px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cont {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #00000060;
+    padding: 32px;
+    border-radius: 10px;
+
+}
+
+.cont > * {
+    margin-top: 0px;
+}
+span {
+    font-size: 40px;
+    cursor: pointer;
+
+}
+.button {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+   
+}
